@@ -1,6 +1,7 @@
 package org.cauoop.crawler;
 
 import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,6 +9,9 @@ import org.jsoup.select.Elements;
 
 public class ArticleCrawler {
 	public String getHtml(String str, String hereText) {
+		if ( str == null ) {
+			return null;
+		}
 		try {
 			Document doc = Jsoup.connect(str).get();
 			String page;
@@ -23,9 +27,11 @@ public class ArticleCrawler {
 		}
 		return null;
 	}
+
 	public String getHtml(String str) {
 		return getHtml(str, "");
 	}
+
 	public String selectGet(String address, String hereLink, String hereText, String deny) {
 		String data="";
 		try {
@@ -49,12 +55,15 @@ public class ArticleCrawler {
 		System.out.println(data);
 		return data;
 	}
+
 	public String selectGet(String address, String hereLink, String hereText) {
 		return selectGet(address, hereLink, hereText, "");
 	}
+
 	public String selectGet(String address, String hereText) {
 		return selectGet(address, "", hereText, "");
 	}
+
 	public String autoGet(String category) {
 		if(category.equalsIgnoreCase("politics")) {
 			String naver_politics = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=100", ".section_headline", "sectionList.nhn");
@@ -76,6 +85,6 @@ public class ArticleCrawler {
 			String naver_entertain = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=106", ".section_headline","sectionList.nhn");
 			return naver_entertain;
 		}
-	return null;
+		return null;
 	}
 }

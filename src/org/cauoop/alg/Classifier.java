@@ -1,50 +1,49 @@
 package org.cauoop.alg;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Classifier {
-	public List<String> filtering(int[][] categoryAndFrequency) {
-		int sum = 0;
-		
-		ArrayList<Integer> poli = new ArrayList<Integer>();
-		poli.add(20);
-		poli.add(30);
-		ArrayList<Integer> IT = new ArrayList<Integer>();
-		IT.add(30);
-		IT.add(10);
-		ArrayList<Integer> enter = new ArrayList<Integer>();
-		enter.add(40);
-		enter.add(60);
-
-		List<ArrayList<Integer>> temp = new ArrayList<ArrayList<Integer>>();
-		temp.add(poli);
-		temp.add(IT);
-		temp.add(enter);
-		int[] categoryCount = new int[temp.size()];
-
-		for ( int i = 0; i < temp.size(); i++ ) {
+	public Classifier() {
+	}
+	
+	public List<String> classification(List<LinkedList<String>> wordStatistic, List<String> numOfReadingArticle) {
+		double sum = 0;
+		double[] categoryCount = new double[wordStatistic.size()];
+		//int[] wordSum = new int[wordStatistic.get(0).size()];
+//		int[] wordSum = new int[wordStatistic.size()];
+		LinkedList<String> result = new LinkedList<String>();
+				
+		for ( int i = 0; i < wordStatistic.size(); i++ ) {
 			categoryCount[i] = 1;
-
-			for ( int j = 0; j < temp.get(0).size(); j++ ) {
-				categoryCount[i] *= temp.get(i).get(j);
+			
+			for ( int j = 1; j < wordStatistic.get(0).size(); j++ ) {
+				if(Integer.parseInt(wordStatistic.get(i).get(j))==0){
+					categoryCount[i] += (double)1/Double.parseDouble(numOfReadingArticle.get(i*2+1));
+				}else{
+//					categoryCount[i] *= (double)(Integer.parseInt(wordStatistic.get(i).get(j)))/Double.parseDouble(numOfReadingArticle.get(i*2+1));
+					categoryCount[i] += (double)(Integer.parseInt(wordStatistic.get(i).get(j)))/Double.parseDouble(numOfReadingArticle.get(i*2+1));
+				}
 			}
 		}
-
-		for (int i = 0; i < categoryCount.length; i++) {
-			System.out.println(categoryCount[i]);
-		}
+//
+//		for (int i = 0; i < categoryCount.length; i++ ) {
+//			System.out.println(numOfReadingArticle.get(i*2) + " : " + categoryCount[i]);
+//		}
 
 		for ( int i = 0; i < categoryCount.length; i++ ) {
 			sum += categoryCount[i];
 		}
-
-		System.out.println("sum : " + sum);
-
+//
+//		System.out.println("sum : " + sum);
+//
 		for ( int i = 0; i < categoryCount.length; i++ ) {
-			System.out.println("percentage : " + categoryCount[i]/(double)sum);
+//			System.out.println(numOfReadingArticle.get(i*2)+" : " + (categoryCount[i]/(double)sum)*100 +"%");
+			result.add(numOfReadingArticle.get(i*2)+" : " + (categoryCount[i]/(double)sum)*100 + "%");
 		}		
 
-		return null;
+		return result;
 	}
+	
+	
 }
