@@ -67,26 +67,26 @@ public class ArticleCrawler {
 	public String autoGet(String category) {
 		if(category.equalsIgnoreCase("politics")) {
 			String naver_politics = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=100", ".section_headline", "#articleBody", "sectionList.nhn");
-			String daum_politics = selectGet("http://media.daum.net/politics", ".wrap_newsitem", "");
+			String daum_politics = selectGet("http://media.daum.net/politics", ".wrap_newsitem", "div#contentsWrapper");
 			return naver_politics + " " + daum_politics;
 		} else if(category.equalsIgnoreCase("economic")) {
 			String naver_economic = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=101", ".section_headline", "#articleBody", "sectionList.nhn");
-			String daum_economic = selectGet("http://media.daum.net/economic", ".wrap_newsitem", "");
+			String daum_economic = selectGet("http://media.daum.net/economic", ".wrap_newsitem", "div#contentsWrapper");
 			return naver_economic + daum_economic;
 		} else if(category.equalsIgnoreCase("society")) {
 			String naver_society = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=102", ".section_headline", "#articleBody", "sectionList.nhn");
-			String daum_society = selectGet("http://media.daum.net/society", ".wrap_newsitem", "");
+			String daum_society = selectGet("http://media.daum.net/society", ".wrap_newsitem", "div#contentsWrapper");
 			return naver_society + " " + daum_society;
 		} else if(category.equalsIgnoreCase("world") || category.equalsIgnoreCase("foreign") || category.equalsIgnoreCase("international")) {
 			String naver_world = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=104", ".section_headline", "#articleBody", "sectionList.nhn");
-			String daum_world = selectGet("http://media.daum.net/foreign", ".wrap_newsitem", "");
+			String daum_world = selectGet("http://media.daum.net/foreign", ".wrap_newsitem", "div#contentsWrapper");
 			return naver_world + " " + daum_world;
 		} else if(category.equalsIgnoreCase("entertain")) {
 			String naver_entertain = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=106", ".section_headline", "#articleBody", "sectionList.nhn");
 			return naver_entertain;
 		} else if(category.equalsIgnoreCase("tech")) {
 			String naver_tech = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=105", ".section_headline", "#articleBody", "sectionList.nhn");
-			String daum_tech = selectGet("http://media.daum.net/tech", ".wrap_newsitem", "");
+			String daum_tech = selectGet("http://media.daum.net/tech", ".wrap_newsitem", "div#contentsWrapper");
 			return naver_tech + " " + daum_tech;
 		}
 		return null;
