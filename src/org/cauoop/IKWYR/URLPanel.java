@@ -22,7 +22,7 @@ public class URLPanel extends JPanel {
 		
 		JLabel lblUrl = new JLabel("URL \uC785\uB825");
 		
-		JLabel lblNewLabel = new JLabel("\uCE74\uD14c\uACE0\uB9AC");
+		JLabel lblNewLabel = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
 		
 		textPane = new CategoryPanel();
 		
