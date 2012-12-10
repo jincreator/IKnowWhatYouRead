@@ -84,6 +84,10 @@ public class ArticleCrawler {
 		} else if(category.equalsIgnoreCase("entertain")) {
 			String naver_entertain = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=106", ".section_headline","sectionList.nhn");
 			return naver_entertain;
+		} else if(category.equalsIgnoreCase("tech")) {
+			String naver_tech = selectGet("http://news.naver.com/main/main.nhn?mode=LSD&mid=shm&sid1=105", ".section_headline","sectionList.nhn");
+			String daum_tech = selectGet("http://media.daum.net/tech", ".wrap_newsitem", "");
+			return naver_tech + " " + daum_tech;
 		}
 		return null;
 	}
